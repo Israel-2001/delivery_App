@@ -2,10 +2,13 @@
 import { ProductCard } from '@/components/ProductCard';
 import Link from 'next/link';
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
 async function getProducts() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'; // Fallback for development
   const res = await fetch(`${apiUrl}/api/products`, {
-    cache: 'no-store', // Ensure fresh data; adjust based on needs
+    next: { revalidate: 60 }, // Revalidate every 60 seconds
   });
   if (!res.ok) {
     throw new Error(`Failed to fetch products: ${res.statusText}`);
