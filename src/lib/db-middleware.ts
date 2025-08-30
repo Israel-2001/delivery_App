@@ -43,23 +43,23 @@ export async function withDB<T>(
 
 // Specific middleware for common database operations
 export const dbOperations = {
-  async findUnique<T>(model: any, args: any): Promise<T | null> {
+  async findUnique<T>(model: { findUnique: (args: unknown) => Promise<T | null> }, args: unknown): Promise<T | null> {
     return withDB(() => model.findUnique(args), null);
   },
   
-  async findMany<T>(model: any, args: any): Promise<T[]> {
+  async findMany<T>(model: { findMany: (args: unknown) => Promise<T[]> }, args: unknown): Promise<T[]> {
     return withDB(() => model.findMany(args), []);
   },
   
-  async create<T>(model: any, args: any): Promise<T> {
+  async create<T>(model: { create: (args: unknown) => Promise<T> }, args: unknown): Promise<T> {
     return withDB(() => model.create(args));
   },
   
-  async update<T>(model: any, args: any): Promise<T> {
+  async update<T>(model: { update: (args: unknown) => Promise<T> }, args: unknown): Promise<T> {
     return withDB(() => model.update(args));
   },
   
-  async delete<T>(model: any, args: any): Promise<T> {
+  async delete<T>(model: { delete: (args: unknown) => Promise<T> }, args: unknown): Promise<T> {
     return withDB(() => model.delete(args));
   },
 };
