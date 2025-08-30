@@ -35,7 +35,7 @@ model Product {
 model Order {
   id        String      @id @default(cuid())
   createdAt DateTime    @default(now())
-  status    String
+  status    OrderStatus @default(PENDING)
   address   String
   userId    String
   user      User        @relation(fields: [userId], references: [id])
