@@ -15,7 +15,7 @@ interface Product {
 }
 
 async function getProduct(id: string): Promise<Product> {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://deliveryapp-ten.vercel.app/';
   const res = await fetch(`${apiUrl}/api/products?id=${id}`, {
     cache: 'no-store',
   });
