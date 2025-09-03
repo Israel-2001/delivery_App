@@ -6,7 +6,7 @@ import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
 async function getProducts() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'; // Fallback for development
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://deliveryapp-ten.vercel.app/'; // Fallback for development
   const res = await fetch(`${apiUrl}/api/products`, {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
   });
